@@ -7,11 +7,15 @@ use strict;
 use autodie;
 use warnings;
 use Carp qw< carp croak confess cluck >;
+use version 'qv';
 
 use Getopt::Euclid;
 
+our $VERSION = qv('0.9.1');
+
 use App::CatalystStarter::Bloated;
 App::CatalystStarter::Bloated::run;
+
 
 __END__
 
@@ -24,7 +28,7 @@ you
 
 =head1 VERSION
 
-This app and its module is currently at a puny version 0.0.1
+This app and its module is version 0.9.1
 
 =head1 SYNOPSIS
 
