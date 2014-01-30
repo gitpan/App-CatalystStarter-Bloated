@@ -1,18 +1,16 @@
-package App::CatalystStarter::Bloated::Initializr;
+package # hide from pause
+    App::CatalystStarter::Bloated::Initializr;
 
 use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.9.1');
+use version; our $VERSION = qv('0.9.2');
 
 use File::ShareDir qw/module_file/;
 use Archive::Zip;
-use File::Path;
-use HTML::TreeBuilder;
-use Mojo::DOM;
-use IO::All;
 use File::Basename;
+use Mojo::DOM;
 use Log::Log4perl qw/:easy/;
 
 my $az;
@@ -285,7 +283,7 @@ from initializr.com in your catalyst project
 
 =head1 VERSION
 
-This document describes App::CatalystStarter::Bloated::Initializr version 0.9.1
+This document describes App::CatalystStarter::Bloated::Initializr version 0.9.2
 
 =head1 SYNOPSIS
 

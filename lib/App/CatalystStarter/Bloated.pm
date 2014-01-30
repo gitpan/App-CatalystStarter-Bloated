@@ -8,22 +8,17 @@ use strict;
 use autodie;
 use Carp;
 
-use version; our $VERSION = qv('0.9.1');
+use version; our $VERSION = qv('0.9.2');
 
 use File::Which qw(which);
-use File::Glob q(:bsd_glob);
 use Path::Tiny qw(path cwd);
 use Capture::Tiny qw(capture_stdout capture);
 use DBI;
-use Time::HiRes qw/ualarm/;
-use Sys::SigAction qw(timeout_call);
 
 use List::Util qw/first/;
 use List::MoreUtils qw/all/;
 
 use Log::Log4perl qw/:easy/;
-
-use File::Slurp;
 
 use App::CatalystStarter::Bloated::Initializr;
 
@@ -508,7 +503,7 @@ sub _create_TT {
     }
 
     ## trust regex to modify the file
-    my $pm = read_file( $tt_pm );
+    my $pm = $tt_pm->slurp;
 
     if ( $pm =~ s/(TEMPLATE_EXTENSION\s*=>\s*'.tt)(',)/${1}2$2/ ) {
         l->debug("Changed template extension to .tt2");
@@ -524,7 +519,7 @@ sub _create_TT {
         l->warn( "Failed adding wrapper to view" );
     }
 
-    write_file( $tt_pm, $pm );
+    $tt_pm->spew( $pm );
 
     ## alter config to set default view
     my $p = _catalyst_path( "lib", $ARGV{'--name'}.".pm" );
@@ -819,7 +814,7 @@ App::CatalystStarter::Bloated - Creates a catalyst app, a TT view, a model and a
 
 =head1 VERSION
 
-This document describes App::CatalystStarter::Bloated version 0.9.1
+This document describes App::CatalystStarter::Bloated version 0.9.2
 
 =head1 SYNOPSIS
 

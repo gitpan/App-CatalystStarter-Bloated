@@ -68,7 +68,6 @@ sub fake_mk_app {
 }
 
 sub a_temp_dir {
-
     return Path::Tiny->tempdir;
 }
 
